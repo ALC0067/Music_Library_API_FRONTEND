@@ -31,7 +31,9 @@ function Signup({ onLogin }) {
       })
       onLogin(data.user)
     } catch (err) {
-      setError(err.response?.data?.error || 'Signup failed. Please try again.')
+      const errorData = err.response?.data
+      const errorMessage = errorData?.errors?.join(', ') || errorData?.error || 'Signup failed. Please try again.'
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }

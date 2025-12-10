@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createSong, updateSong } from '../services/api'
 import './SongForm.css'
 
-function SongForm({ song, onSongAdded, onCancel }) {
+function SongForm({ song, userId, onSongAdded, onCancel }) {
   const [title, setTitle] = useState('')
   const [artist, setArtist] = useState('')
   const [album, setAlbum] = useState('')
@@ -28,7 +28,7 @@ function SongForm({ song, onSongAdded, onCancel }) {
       if (song) {
         await updateSong(song.id, songData)
       } else {
-        await createSong(songData)
+        await createSong({ ...songData, user_id: userId })
       }
       
       onSongAdded()
@@ -36,7 +36,9 @@ function SongForm({ song, onSongAdded, onCancel }) {
       setArtist('')
       setAlbum('')
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to save song')
+      const errorData = err.response?.data
+      const errorMessage = errorData?.errors?.join(', ') || errorData?.error || 'Failed to save song'
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }

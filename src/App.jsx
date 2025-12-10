@@ -11,20 +11,11 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      getCurrentUser()
-        .then(data => {
-          setUser(data)
-          setLoading(false)
-        })
-        .catch(() => {
-          localStorage.removeItem('token')
-          setLoading(false)
-        })
-    } else {
-      setLoading(false)
+    const savedUser = getCurrentUser()
+    if (savedUser) {
+      setUser(savedUser)
     }
+    setLoading(false)
   }, [])
 
   const handleLogin = (userData) => {
@@ -32,7 +23,7 @@ function App() {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('user')
     setUser(null)
   }
 

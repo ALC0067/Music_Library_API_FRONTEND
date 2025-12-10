@@ -10,38 +10,24 @@ const api = axios.create({
   }
 })
 
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
+// Note: This app uses localStorage for session persistence.
+// For a production app, you'd want to implement JWT tokens here.
 
 export const signup = async (userData) => {
-  const response = await api.post('/signup', userData )
-  if (response.data.token) {
-    localStorage.setItem('token', response.data.token)
-  }
+  const response = await api.post('/signup', userData)
+  localStorage.setItem('user', JSON.stringify(response.data))
   return response.data
 }
 
 export const login = async (credentials) => {
   const response = await api.post('/login', credentials)
-  if (response.data.token) {
-    localStorage.setItem('token', response.data.token)
-  }
+  localStorage.setItem('user', JSON.stringify(response.data.user))
   return response.data
 }
 
-export const getCurrentUser = async () => {
-  const response = await api.get('/me')
-  return response.data
+export const getCurrentUser = () => {
+  const user = localStorage.getItem('user')
+  return user ? JSON.parse(user) : null
 }
 
 export const getSongs = async () => {
@@ -60,7 +46,7 @@ export const createSong = async (songData) => {
 }
 
 export const updateSong = async (id, songData) => {
-  const response = await api.put(`/songs/${id}`, { song: songData })
+  const response = await api.put(`/songs/${id}`, songData)
   return response.data
 }
 

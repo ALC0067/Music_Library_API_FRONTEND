@@ -84,6 +84,7 @@ function Dashboard({ user, onLogout }) {
         {showForm && (
           <SongForm 
             song={editingSong}
+            userId={user.id}
             onSongAdded={handleSongAdded}
             onCancel={handleCancel}
           />
