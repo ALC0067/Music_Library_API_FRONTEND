@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: #FFFFFF;
+  color: #000000;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  border: 3px solid #000000;
+  background-color: #FF005C;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 0 #000000;
+  transition: all 0.1s ease;
+}
+
+button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 #000000;
+}
+
+button:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 #000000;
+}
+
+button:disabled {
+  background-color: #CCCCCC;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button.secondary {
+  background-color: #00F0FF;
+  color: #000000;
+}
+
+button.danger {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+input,
+textarea {
+  font-family: 'IBM Plex Mono', monospace;
+  border: 3px solid #000000;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: 100%;
+  box-shadow: 4px 4px 0 #000000;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  background-color: #00F0FF;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.error {
+  background-color: #FF005C;
+  color: #FFFFFF;
+  padding: 16px;
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0 #000000;
+  margin-bottom: 20px;
+  font-weight: 700;
+}

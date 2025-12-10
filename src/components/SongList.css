@@ -1,0 +1,87 @@
+.song-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.song-card {
+  background-color: #00F0FF;
+  border: 4px solid #000000;
+  padding: 25px;
+  box-shadow: 8px 8px 0 #000000;
+  transition: all 0.2s ease;
+}
+
+.song-card:hover {
+  transform: rotate(0deg) !important;
+  box-shadow: 12px 12px 0 #000000;
+}
+
+.song-info {
+  margin-bottom: 20px;
+}
+
+.song-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.song-artist {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.song-album {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.song-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.song-actions button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #000000;
+  border: 4px solid #000000;
+  box-shadow: 8px 8px 0 #FF005C;
+}
+
+.empty-state h3 {
+  font-size: 32px;
+  color: #FFFFFF;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #00F0FF;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .song-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .song-actions {
+    flex-direction: column;
+  }
+}
